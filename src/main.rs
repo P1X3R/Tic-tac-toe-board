@@ -1,18 +1,52 @@
 use std::io::stdin;
 
 fn main() {
-    let board: [[u8; 3]; 3] = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    let mut board: [[u8; 3]; 3] = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    let mut char: u8 = 1;
 
     loop {
         // Draw the board
         for row in board {
-            for _ in row {
-                print!("*");
+            for element in row {
+                if element == 1u8 {
+                    print!("O");
+                } else if element == 2u8 {
+                    print!("X");
+                } else {
+                    print!("*");
+                }
             }
-            println!();
+            println!(); // Insert end of line
         }
+
+        println!("\nInsert new element [n]");
+        println!("Quit [q]");
+
+        println!("\nWhat do you want to do?: ");
 
         let mut key = String::new();
         stdin().read_line(&mut key).unwrap();
+
+        if key.trim().to_string() == "n" {
+            println!("\nWhat is the row what you want to insert?: ");
+            let mut row = String::new();
+            stdin().read_line(&mut row).unwrap();
+            let row: usize = row.trim().parse().unwrap(); // Transform string to int (u8)
+
+            println!("\nWhat is the column what you want to insert?: ");
+            let mut column = String::new();
+            stdin().read_line(&mut column).unwrap();
+            let column: usize = column.trim().parse().unwrap(); // Transform string to int (u8)
+
+            board[row][column] = char;
+
+            if char == 1 {
+                char = 2
+            } else {
+                char = 1
+            }
+        } else if key.trim().to_string() == "q" {
+            break;
+        }
     }
 }
