@@ -30,6 +30,7 @@ fn main() {
         let mut key = String::new();
         stdin().read_line(&mut key).unwrap();
 
+        // Do something on key sended
         if key.trim().to_string() == "n" {
             println!("\nWhat is the row what you want to insert?: ");
             let mut row = String::new();
@@ -43,6 +44,7 @@ fn main() {
 
             board[row][column] = char;
 
+            // Change the character
             if char == 1 {
                 char = 2
             } else {
