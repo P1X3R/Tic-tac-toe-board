@@ -31,27 +31,29 @@ fn main() {
         stdin().read_line(&mut key).unwrap();
 
         // Do something on key sended
-        if key.trim().to_string() == "n" {
-            println!("\nWhat is the row what you want to insert?: ");
-            let mut row = String::new();
-            stdin().read_line(&mut row).unwrap();
-            let row: usize = row.trim().parse().unwrap(); // Transform string to int (u8)
+        match key.trim() {
+            "n" => {
+                println!("\nWhat is the row what you want to insert?: ");
+                let mut row = String::new();
+                stdin().read_line(&mut row).unwrap();
+                let row: usize = row.trim().parse().unwrap(); // Transform string to int (u8)
 
-            println!("\nWhat is the column what you want to insert?: ");
-            let mut column = String::new();
-            stdin().read_line(&mut column).unwrap();
-            let column: usize = column.trim().parse().unwrap(); // Transform string to int (u8)
+                println!("\nWhat is the column what you want to insert?: ");
+                let mut column = String::new();
+                stdin().read_line(&mut column).unwrap();
+                let column: usize = column.trim().parse().unwrap(); // Transform string to int (u8)
 
-            board[row][column] = char;
+                board[row][column] = char;
 
-            // Change the character
-            if char == 1 {
-                char = 2
-            } else {
-                char = 1
+                // Change the character
+                if char == 1 {
+                    char = 2;
+                } else {
+                    char = 1;
+                }
             }
-        } else if key.trim().to_string() == "q" {
-            break;
+            "q" => break,
+            _ => println!("Invalid key"),
         }
     }
 }
