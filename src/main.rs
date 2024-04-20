@@ -1,3 +1,4 @@
+use clearscreen;
 use std::io::stdin;
 
 fn main() {
@@ -5,6 +6,8 @@ fn main() {
     let mut char: u8 = 1;
 
     loop {
+        clearscreen::clear().unwrap();
+
         // Draw the board
         for row in board {
             for element in row {
